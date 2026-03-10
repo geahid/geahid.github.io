@@ -14,6 +14,7 @@
     --accent: #00ff87;
     --accent2: #ff3d57;
     --gold: #ffd166;
+    --student: #38bdf8;
     --text: #f0f0f0;
     --muted: #666;
     --mono: 'Space Mono', monospace;
@@ -22,9 +23,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -42,453 +41,210 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-  }
+  .nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.05em; }
   .nav-links { display: flex; gap: 2rem; }
   .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-family: var(--mono);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: color 0.2s;
+    color: var(--muted); text-decoration: none; font-size: 0.8rem;
+    font-family: var(--mono); letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--accent); }
 
   /* HERO */
   .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 0 2.5rem;
-    padding-top: 80px;
-    position: relative;
-    overflow: hidden;
+    min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 0 2.5rem; padding-top: 80px; position: relative; overflow: hidden;
   }
   .hero::before {
-    content: '';
-    position: absolute;
-    top: -200px; right: -200px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(0,255,135,0.07) 0%, transparent 70%);
-    pointer-events: none;
+    content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,255,135,0.07) 0%, transparent 70%); pointer-events: none;
   }
   .hero-left { padding-right: 4rem; }
   .hero-tag {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    font-family: var(--mono); font-size: 0.75rem; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem;
     display: flex; align-items: center; gap: 0.75rem;
   }
-  .hero-tag::before {
-    content: '';
-    display: block; width: 30px; height: 1px;
-    background: var(--accent);
-  }
-  .hero-name {
-    font-family: var(--display);
-    font-size: clamp(4rem, 8vw, 7rem);
-    line-height: 0.92;
-    letter-spacing: 0.02em;
-    margin-bottom: 0.5rem;
-  }
+  .hero-tag::before { content: ''; display: block; width: 30px; height: 1px; background: var(--accent); }
+  .hero-name { font-family: var(--display); font-size: clamp(4rem, 8vw, 7rem); line-height: 0.92; letter-spacing: 0.02em; margin-bottom: 0.5rem; }
   .hero-name .accent { color: var(--accent); }
-  .hero-tagline {
-    font-size: 1rem;
-    color: var(--muted);
-    line-height: 1.7;
-    margin: 1.5rem 0 2.5rem;
-    max-width: 400px;
-  }
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
+  .hero-tagline { font-size: 1rem; color: var(--muted); line-height: 1.7; margin: 1.5rem 0 2.5rem; max-width: 400px; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn-primary {
-    background: var(--accent);
-    color: #000;
-    padding: 0.8rem 2rem;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none; cursor: pointer;
-    transition: all 0.2s;
+    background: var(--accent); color: #000; padding: 0.8rem 2rem; font-family: var(--mono);
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer; transition: all 0.2s;
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
   }
   .btn-primary:hover { background: #00cc6e; transform: translateY(-2px); }
   .btn-outline {
-    background: transparent;
-    color: var(--text);
-    padding: 0.8rem 2rem;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: all 0.2s;
+    background: transparent; color: var(--text); padding: 0.8rem 2rem; font-family: var(--mono);
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+    border: 1px solid var(--border); cursor: pointer; transition: all 0.2s;
   }
   .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-  .hero-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  .hero-right { display: flex; justify-content: center; align-items: center; }
   .hero-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 2.5rem;
-    width: 100%;
-    max-width: 380px;
-    position: relative;
+    background: var(--card); border: 1px solid var(--border); padding: 2.5rem;
+    width: 100%; max-width: 380px; position: relative;
   }
   .hero-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     background: linear-gradient(90deg, var(--accent), transparent);
   }
-  .status-dot {
-    display: inline-block;
-    width: 8px; height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    margin-right: 0.5rem;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-  .status-text {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-  }
-  .hero-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  .stat-item { }
-  .stat-num {
-    font-family: var(--display);
-    font-size: 2.5rem;
-    color: var(--text);
-    line-height: 1;
-  }
+  .status-dot { display: inline-block; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; margin-right: 0.5rem; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .status-text { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  .stat-num { font-family: var(--display); font-size: 2.5rem; color: var(--text); line-height: 1; }
   .stat-num .accent { color: var(--accent); }
-  .stat-label {
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-top: 0.3rem;
-    font-family: var(--mono);
-    letter-spacing: 0.05em;
-  }
-  .hero-skills {
-    margin-top: 2rem;
-    display: flex; flex-wrap: wrap; gap: 0.5rem;
-  }
-  .skill-tag {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    padding: 0.3rem 0.75rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
+  .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; font-family: var(--mono); letter-spacing: 0.05em; }
+  .hero-skills { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag { font-family: var(--mono); font-size: 0.7rem; padding: 0.3rem 0.75rem; background: var(--surface); border: 1px solid var(--border); color: var(--muted); letter-spacing: 0.05em; }
 
   /* SECTION COMMON */
   section { padding: 6rem 2.5rem; }
-  .section-label {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-  .section-title {
-    font-family: var(--display);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-  .section-sub {
-    color: var(--muted);
-    font-size: 0.95rem;
-    line-height: 1.7;
-    max-width: 500px;
-    margin-bottom: 3rem;
-  }
+  .section-label { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .section-title { font-family: var(--display); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; margin-bottom: 1rem; }
+  .section-sub { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 500px; margin-bottom: 3rem; }
 
-  /* SERVICES / PRICING */
+  /* PRICING */
   #pricing { background: var(--surface); }
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
   .price-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    position: relative;
+    background: var(--card); border: 1px solid var(--border); padding: 2rem; position: relative;
     transition: border-color 0.3s, transform 0.3s;
   }
-  .price-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-  }
-  .price-card.featured {
-    border-color: var(--accent);
-  }
+  .price-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .price-card.featured { border-color: var(--accent); }
   .price-card.featured::before {
-    content: 'POPULAR';
-    position: absolute;
-    top: -1px; right: 1.5rem;
-    background: var(--accent);
-    color: #000;
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding: 0.25rem 0.75rem;
+    content: 'POPULAR'; position: absolute; top: -1px; right: 1.5rem;
+    background: var(--accent); color: #000; font-family: var(--mono);
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; padding: 0.25rem 0.75rem;
   }
-  .price-type {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-  .price-name {
-    font-family: var(--display);
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: var(--text);
-  }
-  .price-amount {
-    display: flex;
-    align-items: baseline;
-    gap: 0.3rem;
-    margin-bottom: 0.25rem;
-  }
-  .price-currency {
-    font-family: var(--mono);
-    font-size: 0.85rem;
-    color: var(--accent);
-  }
-  .price-value {
-    font-family: var(--display);
-    font-size: 3rem;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .price-range {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-  }
-  .price-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 1.5rem 0;
-  }
+  .price-type { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .price-name { font-family: var(--display); font-size: 1.8rem; margin-bottom: 1rem; color: var(--text); }
+  .price-amount { display: flex; align-items: baseline; gap: 0.3rem; margin-bottom: 0.25rem; }
+  .price-currency { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); }
+  .price-value { font-family: var(--display); font-size: 3rem; color: var(--accent); line-height: 1; }
+  .price-range { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-bottom: 0.4rem; letter-spacing: 0.05em; }
+  .price-divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
   .price-features { list-style: none; }
   .price-features li {
-    font-size: 0.85rem;
-    color: var(--muted);
-    padding: 0.5rem 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    line-height: 1.5;
+    font-size: 0.85rem; color: var(--muted); padding: 0.5rem 0;
+    display: flex; align-items: flex-start; gap: 0.75rem; line-height: 1.5;
     border-bottom: 1px solid var(--border);
   }
   .price-features li:last-child { border-bottom: none; }
-  .price-features li::before {
-    content: '→';
-    color: var(--accent);
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
+  .price-features li::before { content: '→'; color: var(--accent); font-family: var(--mono); font-size: 0.8rem; flex-shrink: 0; margin-top: 1px; }
   .price-cta {
-    display: block;
-    width: 100%;
-    margin-top: 1.5rem;
-    padding: 0.85rem;
-    text-align: center;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    color: var(--text);
-    background: transparent;
+    display: block; width: 100%; margin-top: 1.5rem; padding: 0.85rem; text-align: center;
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+    border: 1px solid var(--border); color: var(--text); background: transparent;
   }
-  .price-card.featured .price-cta {
-    background: var(--accent);
-    color: #000;
-    border-color: var(--accent);
-    font-weight: 700;
+  .price-card.featured .price-cta { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; }
+  .price-cta:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+
+  /* STUDENT PRICING */
+  #student { background: var(--bg); }
+  .student-banner {
+    background: linear-gradient(135deg, rgba(56,189,248,0.08), rgba(56,189,248,0.03));
+    border: 1px solid rgba(56,189,248,0.25);
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 1rem;
+    font-family: var(--mono); font-size: 0.78rem; color: var(--student);
+    letter-spacing: 0.08em;
   }
-  .price-cta:hover {
-    background: var(--accent);
-    color: #000;
-    border-color: var(--accent);
+  .student-section-title { color: var(--student) !important; }
+  .student-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+  .student-card {
+    background: var(--card);
+    border: 1px solid rgba(56,189,248,0.2);
+    padding: 2rem; position: relative;
+    transition: border-color 0.3s, transform 0.3s;
   }
+  .student-card:hover { border-color: var(--student); transform: translateY(-4px); }
+  .student-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--student), transparent);
+  }
+  .student-badge {
+    display: inline-block;
+    background: rgba(56,189,248,0.12);
+    border: 1px solid rgba(56,189,248,0.3);
+    color: var(--student);
+    font-family: var(--mono); font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.12em; padding: 0.25rem 0.75rem; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .student-price-name { font-family: var(--display); font-size: 1.6rem; color: var(--text); margin-bottom: 0.75rem; }
+  .student-amount { display: flex; align-items: baseline; gap: 0.25rem; margin-bottom: 0.2rem; }
+  .student-currency { font-family: var(--mono); font-size: 0.85rem; color: var(--student); }
+  .student-value { font-family: var(--display); font-size: 2.8rem; color: var(--student); line-height: 1; }
+  .student-range { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); margin-bottom: 1.25rem; letter-spacing: 0.05em; }
+  .student-features { list-style: none; margin-top: 1rem; }
+  .student-features li {
+    font-size: 0.83rem; color: var(--muted); padding: 0.45rem 0;
+    display: flex; align-items: flex-start; gap: 0.75rem; line-height: 1.5;
+    border-bottom: 1px solid var(--border);
+  }
+  .student-features li:last-child { border-bottom: none; }
+  .student-features li::before { content: '→'; color: var(--student); font-family: var(--mono); font-size: 0.8rem; flex-shrink: 0; margin-top: 1px; }
+  .student-cta {
+    display: block; width: 100%; margin-top: 1.5rem; padding: 0.85rem; text-align: center;
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s; border: 1px solid rgba(56,189,248,0.3);
+    color: var(--student); background: transparent;
+  }
+  .student-cta:hover { background: var(--student); color: #000; border-color: var(--student); }
 
   /* ADD-ONS */
-  #addons { background: var(--bg); }
-  .addons-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
-  }
+  #addons { background: var(--surface); }
+  .addons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 2rem; }
   .addon-item {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 1.25rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: border-color 0.2s;
+    background: var(--card); border: 1px solid var(--border); padding: 1.25rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s;
   }
   .addon-item:hover { border-color: var(--gold); }
-  .addon-name {
-    font-size: 0.85rem;
-    color: var(--text);
-  }
-  .addon-price {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--gold);
-    font-weight: 700;
-    white-space: nowrap;
-    margin-left: 1rem;
-  }
+  .addon-name { font-size: 0.85rem; color: var(--text); }
+  .addon-price { font-family: var(--mono); font-size: 0.8rem; color: var(--gold); font-weight: 700; white-space: nowrap; margin-left: 1rem; }
 
   /* TERMS */
-  #terms { background: var(--surface); }
-  .terms-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  .term-card {
-    padding: 1.5rem;
-    border-left: 2px solid var(--accent);
-    background: var(--card);
-  }
-  .term-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-  .term-title {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-  .term-desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
+  #terms { background: var(--card); }
+  .terms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+  .term-card { padding: 1.5rem; border-left: 2px solid var(--accent); background: var(--surface); }
+  .term-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .term-title { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .term-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
 
   /* CONTACT */
   #contact { background: var(--bg); text-align: center; }
   .contact-inner { max-width: 600px; margin: 0 auto; }
-  .contact-big {
-    font-family: var(--display);
-    font-size: clamp(3rem, 8vw, 6rem);
-    line-height: 0.9;
-    margin: 1.5rem 0;
-  }
+  .contact-big { font-family: var(--display); font-size: clamp(3rem, 8vw, 6rem); line-height: 0.9; margin: 1.5rem 0; }
   .contact-big .accent { color: var(--accent); }
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-  }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
   .contact-link {
-    font-family: var(--mono);
-    font-size: 0.8rem;
-    color: var(--muted);
-    text-decoration: none;
-    padding: 0.6rem 1.5rem;
-    border: 1px solid var(--border);
-    letter-spacing: 0.1em;
-    transition: all 0.2s;
-    display: flex; align-items: center; gap: 0.5rem;
+    font-family: var(--mono); font-size: 0.8rem; color: var(--muted); text-decoration: none;
+    padding: 0.6rem 1.5rem; border: 1px solid var(--border); letter-spacing: 0.1em;
+    transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem;
   }
   .contact-link:hover { color: var(--accent); border-color: var(--accent); }
 
   /* FOOTER */
   footer {
-    padding: 2rem 2.5rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    padding: 2rem 2.5rem; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
   }
-  footer span {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-  }
+  footer span { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
 
-  /* SCROLLBAR */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); }
   ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-  /* FADE IN */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeUp 0.7s ease forwards;
-  }
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
+  .fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp 0.7s ease forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
   .delay-1 { animation-delay: 0.1s; }
   .delay-2 { animation-delay: 0.25s; }
   .delay-3 { animation-delay: 0.4s; }
@@ -510,6 +266,7 @@
   <div class="nav-logo">// GEAHID.dev</div>
   <div class="nav-links">
     <a href="#pricing">Pricing</a>
+    <a href="#student">Students</a>
     <a href="#addons">Add-ons</a>
     <a href="#terms">Terms</a>
     <a href="#contact">Contact</a>
@@ -658,67 +415,102 @@
   </div>
 </section>
 
+<!-- STUDENT PRICING -->
+<section id="student">
+  <div class="section-label">// 03 — Student Deals</div>
+  <h2 class="section-title student-section-title">STUDENT PRICING</h2>
+  <p class="section-sub">Special discounted rates for students with school projects or thesis requirements. Just show your school ID or mention you're a student! 🎓</p>
+
+  <div class="student-banner">
+    <span style="font-size:1.2rem;">🎓</span>
+    <span>STUDENT DISCOUNT AVAILABLE — Lower prices for school projects, thesis, and capstone requirements. Message me to verify!</span>
+  </div>
+
+  <div class="student-grid">
+
+    <div class="student-card">
+      <div class="student-badge">Student Deal 01</div>
+      <div class="student-price-name">BASIC SCHOOL SITE</div>
+      <div class="student-amount">
+        <span class="student-currency">₱</span>
+        <span class="student-value">3K</span>
+      </div>
+      <div class="student-range">Starting at ₱3,000 — simple school project</div>
+      <ul class="student-features">
+        <li>1–3 page static website</li>
+        <li>Mobile responsive design</li>
+        <li>Basic layout and content</li>
+        <li>1–2 rounds of revisions</li>
+        <li>Delivery in 2–4 days</li>
+      </ul>
+      <button onclick="getStarted('Basic School Site (Student)', '₱3,000')" class="student-cta">Get Started</button>
+    </div>
+
+    <div class="student-card">
+      <div class="student-badge">Student Deal 02</div>
+      <div class="student-price-name">STANDARD PROJECT</div>
+      <div class="student-amount">
+        <span class="student-currency">₱</span>
+        <span class="student-value">5K</span>
+      </div>
+      <div class="student-range">Starting at ₱5,000 — multi-page project</div>
+      <ul class="student-features">
+        <li>Up to 5 pages</li>
+        <li>Custom design per requirement</li>
+        <li>Contact or inquiry form</li>
+        <li>Mobile responsive</li>
+        <li>2 rounds of revisions</li>
+        <li>Delivery in 3–7 days</li>
+      </ul>
+      <button onclick="getStarted('Standard School Project (Student)', '₱5,000')" class="student-cta">Get Started</button>
+    </div>
+
+    <div class="student-card">
+      <div class="student-badge">Student Deal 03</div>
+      <div class="student-price-name">THESIS / CAPSTONE</div>
+      <div class="student-amount">
+        <span class="student-currency">₱</span>
+        <span class="student-value">10K</span>
+      </div>
+      <div class="student-range">Starting at ₱10,000 — full system or website</div>
+      <ul class="student-features">
+        <li>Full multi-page website or system</li>
+        <li>Database integration (if needed)</li>
+        <li>Admin panel or dashboard</li>
+        <li>Login / user system</li>
+        <li>3 rounds of revisions</li>
+        <li>Delivery in 7–14 days</li>
+        <li>Documentation support</li>
+      </ul>
+      <button onclick="getStarted('Thesis / Capstone (Student)', '₱10,000')" class="student-cta">Get Started</button>
+    </div>
+
+  </div>
+</section>
+
 <!-- ADD-ONS -->
 <section id="addons">
-  <div class="section-label">// 03 — Extras</div>
+  <div class="section-label">// 04 — Extras</div>
   <h2 class="section-title">ADD-ONS</h2>
   <p class="section-sub">Enhance your website with these optional features. Prices are added on top of your chosen package.</p>
 
   <div class="addons-grid">
-    <div class="addon-item">
-      <span class="addon-name">Logo Design</span>
-      <span class="addon-price">+₱1,500</span>
-    </div>
-    <div class="addon-item">
-      <span class="addon-name">Domain Setup (.com)</span>
-      <span class="addon-price">+₱1,200/yr</span>
-    </div>
-    <div class="addon-item">
-      <span class="addon-name">Web Hosting (1yr)</span>
-      <span class="addon-price">+₱2,500/yr</span>
-    </div>
-    <div class="addon-item">
-      <span class="addon-name">GCash Payment Integration</span>
-      <span class="addon-price">+₱2,000</span>
-    </div>
-    <div class="addon-item">
-      <span class="addon-name">Facebook Pixel Setup</span>
-      <span class="addon-price">+₱800</span>
-    </div>
-    <div class="addon-item">
-      <span class="addon-name">Live Chat Widget</span>
-      <span class="addon-price">+₱1,000</span>
-    </div>
-    <div class="addon-item">
-      <span class="addon-name">Google Analytics Setup</span>
-      <span class="addon-price">+₱500</span>
-    </div>
-    <div class="addon-item">
-      <span class="addon-name">Speed Optimization</span>
-      <span class="addon-price">+₱1,500</span>
-    </div>
-    <div class="addon-item">
-      <span class="addon-name">Monthly Maintenance</span>
-      <span class="addon-price">+₱1,000/mo</span>
-    </div>
-    <div class="addon-item">
-      <span class="addon-name">Extra Revision Round</span>
-      <span class="addon-price">+₱500</span>
-    </div>
-    <div class="addon-item">
-      <span class="addon-name">Rush Delivery (48hrs)</span>
-      <span class="addon-price">+₱1,500</span>
-    </div>
-    <div class="addon-item">
-      <span class="addon-name">Booking/Appointment System</span>
-      <span class="addon-price">+₱3,000</span>
-    </div>
+    <div class="addon-item"><span class="addon-name">Logo Design</span><span class="addon-price">+₱1,500</span></div>
+    <div class="addon-item"><span class="addon-name">Domain Setup (.com)</span><span class="addon-price">+₱1,200/yr</span></div>
+    <div class="addon-item"><span class="addon-name">Web Hosting (1yr)</span><span class="addon-price">+₱2,500/yr</span></div>
+    <div class="addon-item"><span class="addon-name">GCash Payment Integration</span><span class="addon-price">+₱2,000</span></div>
+    <div class="addon-item"><span class="addon-name">Live Chat Widget</span><span class="addon-price">+₱1,000</span></div>
+    <div class="addon-item"><span class="addon-name">Speed Optimization</span><span class="addon-price">+₱1,500</span></div>
+    <div class="addon-item"><span class="addon-name">Monthly Maintenance</span><span class="addon-price">+₱1,000/mo</span></div>
+    <div class="addon-item"><span class="addon-name">Extra Revision Round</span><span class="addon-price">+₱500</span></div>
+    <div class="addon-item"><span class="addon-name">Rush Delivery (48hrs)</span><span class="addon-price">+₱1,500</span></div>
+    <div class="addon-item"><span class="addon-name">Booking/Appointment System</span><span class="addon-price">+₱3,000</span></div>
   </div>
 </section>
 
 <!-- TERMS -->
 <section id="terms">
-  <div class="section-label">// 04 — Terms</div>
+  <div class="section-label">// 05 — Terms</div>
   <h2 class="section-title">WORKING TERMS</h2>
   <p class="section-sub">Clear and fair terms so we both know what to expect.</p>
 
@@ -759,12 +551,12 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-inner">
-    <div class="section-label" style="justify-content:center;display:flex">// 05 — Contact</div>
+    <div class="section-label" style="justify-content:center;display:flex">// 06 — Contact</div>
     <div class="contact-big">
       LET'S<br><span class="accent">WORK</span><br>TOGETHER
     </div>
     <p style="color:var(--muted);font-size:0.95rem;line-height:1.7;margin-top:1rem;">
-      Got a project in mind? Send me a message and I'll get back to you within 24 hours. 
+      Got a project in mind? Send me a message and I'll get back to you within 24 hours.
       Based in the Philippines 🇵🇭
     </p>
     <div class="contact-links">
@@ -814,7 +606,6 @@
     document.getElementById('modal-msg-package').textContent = packageName;
     document.getElementById('modal-msg-price').textContent = priceRange;
 
-    // Open Gmail compose with pre-filled notification email
     const subject = encodeURIComponent('🔔 New Client Inquiry: ' + packageName);
     const body = encodeURIComponent(
       'Hi GEAHID,\n\nA potential client just clicked "Get Started" on your portfolio website!\n\n' +
@@ -825,8 +616,7 @@
     );
     window.open('https://mail.google.com/mail/?view=cm&to=geahiddd@gmail.com&su=' + subject + '&body=' + body, '_blank');
 
-    const overlay = document.getElementById('modal-overlay');
-    overlay.style.display = 'flex';
+    document.getElementById('modal-overlay').style.display = 'flex';
   }
 
   function closeModal() {
