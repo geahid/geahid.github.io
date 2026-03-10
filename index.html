@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEAHID — Web Developer Philippines</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --card: #161616;
+    --border: #222222;
+    --accent: #00ff87;
+    --accent2: #ff3d57;
+    --gold: #ffd166;
+    --text: #f0f0f0;
+    --muted: #666;
+    --mono: 'Space Mono', monospace;
+    --display: 'Bebas Neue', sans-serif;
+    --body: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 2.5rem;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,255,135,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-left { padding-right: 4rem; }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block; width: 30px; height: 1px;
+    background: var(--accent);
+  }
+  .hero-name {
+    font-family: var(--display);
+    font-size: clamp(4rem, 8vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .hero-name .accent { color: var(--accent); }
+  .hero-tagline {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 1.5rem 0 2.5rem;
+    max-width: 400px;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    padding: 0.8rem 2rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none; cursor: pointer;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .btn-primary:hover { background: #00cc6e; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    padding: 0.8rem 2rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .status-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .status-text {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: var(--display);
+    font-size: 2.5rem;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat-num .accent { color: var(--accent); }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+    font-family: var(--mono);
+    letter-spacing: 0.05em;
+  }
+  .hero-skills {
+    margin-top: 2rem;
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .skill-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.3rem 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 2.5rem; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 3rem;
+  }
+
+  /* SERVICES / PRICING */
+  #pricing { background: var(--surface); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .price-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .price-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+  .price-card.featured {
+    border-color: var(--accent);
+  }
+  .price-card.featured::before {
+    content: 'POPULAR';
+    position: absolute;
+    top: -1px; right: 1.5rem;
+    background: var(--accent);
+    color: #000;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem;
+  }
+  .price-type {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .price-name {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+  .price-amount {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    margin-bottom: 0.25rem;
+  }
+  .price-currency {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+  }
+  .price-value {
+    font-family: var(--display);
+    font-size: 3rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .price-range {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+  .price-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1.5rem 0;
+  }
+  .price-features { list-style: none; }
+  .price-features li {
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-features li:last-child { border-bottom: none; }
+  .price-features li::before {
+    content: '→';
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .price-cta {
+    display: block;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 0.85rem;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: transparent;
+  }
+  .price-card.featured .price-cta {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+  .price-cta:hover {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  /* ADD-ONS */
+  #addons { background: var(--bg); }
+  .addons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .addon-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.2s;
+  }
+  .addon-item:hover { border-color: var(--gold); }
+  .addon-name {
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+  .addon-price {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-weight: 700;
+    white-space: nowrap;
+    margin-left: 1rem;
+  }
+
+  /* TERMS */
+  #terms { background: var(--surface); }
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .term-card {
+    padding: 1.5rem;
+    border-left: 2px solid var(--accent);
+    background: var(--card);
+  }
+  .term-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .term-title {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .term-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--bg); text-align: center; }
+  .contact-inner { max-width: 600px; margin: 0 auto; }
+  .contact-big {
+    font-family: var(--display);
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.9;
+    margin: 1.5rem 0;
+  }
+  .contact-big .accent { color: var(--accent); }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .contact-link {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.6rem 1.5rem;
+    border: 1px solid var(--border);
+    letter-spacing: 0.1em;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .contact-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 2.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer span {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  /* FADE IN */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.25s; }
+  .delay-3 { animation-delay: 0.4s; }
+  .delay-4 { animation-delay: 0.55s; }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; }
+    .hero-left { padding-right: 0; margin-bottom: 3rem; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">// GEAHID.dev</div>
+  <div class="nav-links">
+    <a href="#pricing">Pricing</a>
+    <a href="#addons">Add-ons</a>
+    <a href="#terms">Terms</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag fade-up">Web Developer · Philippines</div>
+    <h1 class="hero-name fade-up delay-1">
+      GEA<br><span class="accent">HID</span>
+    </h1>
+    <p class="hero-tagline fade-up delay-2">
+      I build fast, clean, and functional websites for students, freelancers, and small businesses — priced fairly in Philippine Peso.
+    </p>
+    <div class="hero-cta fade-up delay-3">
+      <a href="#pricing" class="btn-primary">View Pricing</a>
+      <a href="#contact" class="btn-outline">Get a Quote</a>
+    </div>
+  </div>
+  <div class="hero-right fade-up delay-2">
+    <div class="hero-card">
+      <div>
+        <span class="status-dot"></span>
+        <span class="status-text">Available for projects</span>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">3<span class="accent">+</span></div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100<span class="accent">%</span></div>
+          <div class="stat-label">Satisfaction</div>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <div style="font-family:var(--mono);font-size:0.7rem;color:var(--accent);letter-spacing:0.1em;margin-bottom:0.75rem;">LANGUAGES</div>
+      </div>
+      <div class="hero-skills">
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">JSON</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">C#</span>
+        <span class="skill-tag">Python</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-label">// 02 — Services</div>
+  <h2 class="section-title">PRICING PACKAGES</h2>
+  <p class="section-sub">Transparent pricing in Philippine Peso. All packages include mobile-responsive design and basic SEO setup.</p>
+
+  <div class="pricing-grid">
+
+    <div class="price-card">
+      <div class="price-type">Package 01</div>
+      <div class="price-name">BASIC SITE</div>
+      <div class="price-amount">
+        <span class="price-currency">₱</span>
+        <span class="price-value">3K</span>
+      </div>
+      <div class="price-range">₱3,000 – ₱8,000 depending on scope</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>1–3 page static website</li>
+        <li>Mobile responsive design</li>
+        <li>Contact form integration</li>
+        <li>Basic SEO setup</li>
+        <li>2 rounds of revisions</li>
+        <li>Delivery in 3–5 days</li>
+      </ul>
+      <button onclick="getStarted('Basic Site', '₱3,000 – ₱8,000')" class="price-cta">Get Started</button>
+    </div>
+
+    <div class="price-card featured">
+      <div class="price-type">Package 02</div>
+      <div class="price-name">BUSINESS SITE</div>
+      <div class="price-amount">
+        <span class="price-currency">₱</span>
+        <span class="price-value">15K</span>
+      </div>
+      <div class="price-range">₱15,000 – ₱35,000 depending on scope</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Up to 10 pages</li>
+        <li>Custom UI design</li>
+        <li>Contact form + Google Maps</li>
+        <li>Basic CMS (easy to edit)</li>
+        <li>Social media links</li>
+        <li>3 rounds of revisions</li>
+        <li>Delivery in 7–14 days</li>
+      </ul>
+      <button onclick="getStarted('Business Site', '₱15,000 – ₱35,000')" class="price-cta">Get Started</button>
+    </div>
+
+    <div class="price-card">
+      <div class="price-type">Package 03</div>
+      <div class="price-name">E-COMMERCE</div>
+      <div class="price-amount">
+        <span class="price-currency">₱</span>
+        <span class="price-value">20K</span>
+      </div>
+      <div class="price-range">₱20,000 – ₱60,000 depending on scope</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Full online store setup</li>
+        <li>Product catalog management</li>
+        <li>GCash / PayMaya / Card checkout</li>
+        <li>Admin dashboard</li>
+        <li>Order tracking system</li>
+        <li>Inventory management</li>
+        <li>3–5 rounds of revisions</li>
+        <li>Delivery in 14–30 days</li>
+      </ul>
+      <button onclick="getStarted('E-Commerce Store', '₱20,000 – ₱60,000')" class="price-cta">Get Started</button>
+    </div>
+
+    <div class="price-card">
+      <div class="price-type">Package 04</div>
+      <div class="price-name">PORTFOLIO</div>
+      <div class="price-amount">
+        <span class="price-currency">₱</span>
+        <span class="price-value">2K</span>
+      </div>
+      <div class="price-range">₱2,000 – ₱6,000 depending on scope</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>Personal portfolio site</li>
+        <li>About + projects + contact</li>
+        <li>Smooth animations</li>
+        <li>Mobile responsive</li>
+        <li>2 rounds of revisions</li>
+        <li>Delivery in 2–4 days</li>
+      </ul>
+      <button onclick="getStarted('Portfolio Site', '₱2,000 – ₱6,000')" class="price-cta">Get Started</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ADD-ONS -->
+<section id="addons">
+  <div class="section-label">// 03 — Extras</div>
+  <h2 class="section-title">ADD-ONS</h2>
+  <p class="section-sub">Enhance your website with these optional features. Prices are added on top of your chosen package.</p>
+
+  <div class="addons-grid">
+    <div class="addon-item">
+      <span class="addon-name">Logo Design</span>
+      <span class="addon-price">+₱1,500</span>
+    </div>
+    <div class="addon-item">
+      <span class="addon-name">Domain Setup (.com)</span>
+      <span class="addon-price">+₱1,200/yr</span>
+    </div>
+    <div class="addon-item">
+      <span class="addon-name">Web Hosting (1yr)</span>
+      <span class="addon-price">+₱2,500/yr</span>
+    </div>
+    <div class="addon-item">
+      <span class="addon-name">GCash Payment Integration</span>
+      <span class="addon-price">+₱2,000</span>
+    </div>
+    <div class="addon-item">
+      <span class="addon-name">Facebook Pixel Setup</span>
+      <span class="addon-price">+₱800</span>
+    </div>
+    <div class="addon-item">
+      <span class="addon-name">Live Chat Widget</span>
+      <span class="addon-price">+₱1,000</span>
+    </div>
+    <div class="addon-item">
+      <span class="addon-name">Google Analytics Setup</span>
+      <span class="addon-price">+₱500</span>
+    </div>
+    <div class="addon-item">
+      <span class="addon-name">Speed Optimization</span>
+      <span class="addon-price">+₱1,500</span>
+    </div>
+    <div class="addon-item">
+      <span class="addon-name">Monthly Maintenance</span>
+      <span class="addon-price">+₱1,000/mo</span>
+    </div>
+    <div class="addon-item">
+      <span class="addon-name">Extra Revision Round</span>
+      <span class="addon-price">+₱500</span>
+    </div>
+    <div class="addon-item">
+      <span class="addon-name">Rush Delivery (48hrs)</span>
+      <span class="addon-price">+₱1,500</span>
+    </div>
+    <div class="addon-item">
+      <span class="addon-name">Booking/Appointment System</span>
+      <span class="addon-price">+₱3,000</span>
+    </div>
+  </div>
+</section>
+
+<!-- TERMS -->
+<section id="terms">
+  <div class="section-label">// 04 — Terms</div>
+  <h2 class="section-title">WORKING TERMS</h2>
+  <p class="section-sub">Clear and fair terms so we both know what to expect.</p>
+
+  <div class="terms-grid">
+    <div class="term-card">
+      <div class="term-icon">💸</div>
+      <div class="term-title">Payment Terms</div>
+      <div class="term-desc">50% downpayment before work starts. Remaining 50% upon final delivery before files are handed over.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-icon">🔄</div>
+      <div class="term-title">Revisions</div>
+      <div class="term-desc">Each package includes a set number of revision rounds. Additional revisions are charged at ₱500 per round.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-icon">📦</div>
+      <div class="term-title">Deliverables</div>
+      <div class="term-desc">You receive the full source code, deployed website link, and basic user guide on how to update content.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-icon">⏳</div>
+      <div class="term-title">Timelines</div>
+      <div class="term-desc">Delivery timeline starts only after downpayment is received and all required content (text, images, logo) is provided.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-icon">🛠️</div>
+      <div class="term-title">Post-Launch Support</div>
+      <div class="term-desc">7 days of free bug fixes after launch. After that, maintenance is available at ₱1,000/month.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-icon">📵</div>
+      <div class="term-title">Cancellation</div>
+      <div class="term-desc">If client cancels after work has started, the downpayment is non-refundable. Completed work will be delivered.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="justify-content:center;display:flex">// 05 — Contact</div>
+    <div class="contact-big">
+      LET'S<br><span class="accent">WORK</span><br>TOGETHER
+    </div>
+    <p style="color:var(--muted);font-size:0.95rem;line-height:1.7;margin-top:1rem;">
+      Got a project in mind? Send me a message and I'll get back to you within 24 hours. 
+      Based in the Philippines 🇵🇭
+    </p>
+    <div class="contact-links">
+      <a href="https://www.facebook.com/GEAHID" target="_blank" class="contact-link">📱 Message on Facebook</a>
+      <a href="mailto:geahiddd@gmail.com" class="contact-link">✉️ Email Me</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 GEAHID — Web Developer, Philippines</span>
+  <span>AVAILABLE FOR FREELANCE WORK</span>
+</footer>
+
+<!-- MODAL -->
+<div id="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:999;backdrop-filter:blur(6px);align-items:center;justify-content:center;">
+  <div id="modal-box" style="background:#161616;border:1px solid #00ff87;max-width:460px;width:90%;padding:2.5rem;position:relative;animation:fadeUp 0.3s ease forwards;">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#00ff87,transparent);"></div>
+    <div style="font-family:'Space Mono',monospace;font-size:0.7rem;color:#00ff87;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">Interested in</div>
+    <div id="modal-package" style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:#f0f0f0;margin-bottom:0.25rem;"></div>
+    <div id="modal-price" style="font-family:'Space Mono',monospace;font-size:0.8rem;color:#00ff87;margin-bottom:1.5rem;"></div>
+    <p style="font-size:0.88rem;color:#888;line-height:1.7;margin-bottom:1.5rem;">
+      To get started, message me on Facebook and let me know which package you're interested in. I'll reply within 24 hours! 🇵🇭
+    </p>
+    <div style="background:#111;border:1px solid #222;padding:1rem;margin-bottom:1.5rem;font-family:'Space Mono',monospace;font-size:0.75rem;color:#aaa;line-height:1.8;">
+      <span style="color:#00ff87;">You can say:</span><br>
+      "Hi GEAHID! I'm interested in your <span id="modal-msg-package" style="color:#fff;"></span> package (<span id="modal-msg-price" style="color:#fff;"></span>). Can we talk about my project?"
+    </div>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <a href="https://www.facebook.com/GEAHID" target="_blank"
+        style="flex:1;background:#00ff87;color:#000;padding:0.85rem 1rem;font-family:'Space Mono',monospace;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-align:center;text-decoration:none;">
+        📱 Message on Facebook
+      </a>
+      <button onclick="closeModal()"
+        style="background:transparent;color:#666;padding:0.85rem 1rem;font-family:'Space Mono',monospace;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;border:1px solid #222;cursor:pointer;">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function getStarted(packageName, priceRange) {
+    document.getElementById('modal-package').textContent = packageName;
+    document.getElementById('modal-price').textContent = priceRange;
+    document.getElementById('modal-msg-package').textContent = packageName;
+    document.getElementById('modal-msg-price').textContent = priceRange;
+
+    // Open Gmail compose with pre-filled notification email
+    const subject = encodeURIComponent('🔔 New Client Inquiry: ' + packageName);
+    const body = encodeURIComponent(
+      'Hi GEAHID,\n\nA potential client just clicked "Get Started" on your portfolio website!\n\n' +
+      'Package: ' + packageName + '\n' +
+      'Price Range: ' + priceRange + '\n\n' +
+      'They are being directed to your Facebook page to message you.\n\n' +
+      '-- Auto-notification from GEAHID.dev portfolio --'
+    );
+    window.open('https://mail.google.com/mail/?view=cm&to=geahiddd@gmail.com&su=' + subject + '&body=' + body, '_blank');
+
+    const overlay = document.getElementById('modal-overlay');
+    overlay.style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').style.display = 'none';
+  }
+
+  document.getElementById('modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
+</body>
+</html>
